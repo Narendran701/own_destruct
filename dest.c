@@ -3,8 +3,8 @@
 #include <limits.h>
 #include <string.h>
 
-int F_Name();
-int F_Mask();
+void F_Name();
+void F_Mask();
 
 void main(int argc, char **argv)
     {
@@ -13,17 +13,17 @@ void main(int argc, char **argv)
             F_Name(file_name,loc);
     }
 
-    int F_Name(char *file_name,FILE *loc)
+    void F_Name(char *file_name,FILE *loc)
         {
             char path[PATH_MAX];
             char cfil[50];
             getcwd(path,sizeof(path));
 	        char *fn = memmove(file_name,file_name+2,strlen(file_name));
             strcat(strcat(strcat(cfil,path),"/"),fn);
-            return F_Mask(cfil,loc);
+            F_Mask(cfil,loc);
         }
 
-    int F_Mask(char *fullname,FILE *loc)
+    void F_Mask(char *fullname,FILE *loc)
         {
             short count = 0;
             remove(fullname);
@@ -35,5 +35,4 @@ void main(int argc, char **argv)
                     count++;
                 }
             fclose(loc);
-            return 0;  
         }
